@@ -16,6 +16,6 @@ public class Finding {
 
     @Override
     public String toString() {
-        return "{" + packageName + "@" + version + "(" + advisory + " -> " + affected + ")}";
+        return "{" + packageName + "@" + version + " (" + advisory + " -> " + affected + ")}";
     }
 }

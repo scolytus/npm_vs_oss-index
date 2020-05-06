@@ -26,4 +26,5 @@ public class AppTest {
         assertThat(App.getVersionUrl(1500), is("https://www.npmjs.com/advisories/1500/versions"));
         assertThat(App.getVersionUrl(2000), is("https://www.npmjs.com/advisories/2000/versions"));
     }
+
 }
