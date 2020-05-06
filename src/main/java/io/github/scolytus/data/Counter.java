@@ -11,4 +11,9 @@ public class Counter {
     public int getCount() {
         return cnt;
     }
+
+    // just for Jackson
+    public void setCount(int newCount) {
+        cnt = newCount;
+    }
 }

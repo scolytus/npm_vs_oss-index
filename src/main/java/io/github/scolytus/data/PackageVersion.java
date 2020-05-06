@@ -9,6 +9,10 @@ public class PackageVersion {
     private String packageName;
     private String version;
     private List<Finding> findings = new ArrayList<>();
+    private OSSIndexComponentReport ossIndexReport;
+
+    public PackageVersion() {
+    }
 
     public PackageVersion(String packageName, String version) {
         this.packageName = packageName;
@@ -48,5 +52,33 @@ public class PackageVersion {
 
     public static String toString(final String packageName, final String version) {
         return "" + packageName + "@" + version;
+    }
+
+    public String getPackageName() {
+        return packageName;
+    }
+
+    public void setPackageName(String packageName) {
+        this.packageName = packageName;
+    }
+
+    public String getVersion() {
+        return version;
+    }
+
+    public void setVersion(String version) {
+        this.version = version;
+    }
+
+    public void setFindings(List<Finding> findings) {
+        this.findings = findings;
+    }
+
+    public OSSIndexComponentReport getOssIndexReport() {
+        return ossIndexReport;
+    }
+
+    public void setOssIndexReport(OSSIndexComponentReport ossIndexReport) {
+        this.ossIndexReport = ossIndexReport;
     }
 }

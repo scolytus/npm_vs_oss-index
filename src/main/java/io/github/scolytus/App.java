@@ -21,15 +21,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-public class App {
+public class App extends AbstractStep{
 
     private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
     private static final int MAX_ADVISORY = 1513;
-
-    private static final int SLEEP_NORMAL = 2;
-
-    private static final int SLEEP_LIMIT_HIT = 90;
 
     public static final String BASE_URL = "https://www.npmjs.com/advisories/";
 
@@ -85,6 +81,8 @@ public class App {
             for (Integer advisory : currentRetry) {
                 run(advisory);
             }
+
+            iterationCount++;
         } while (currentRetry.size() > 0);
 
         analyzeFindings();
@@ -105,7 +103,7 @@ public class App {
             final int statusCode = e.getStatusCode();
             final String statusCodeString = String.valueOf(statusCode);
 
-            LOGGER.error("HTTP status error for advisory '{}': {}", advisory, statusCode);
+            LOGGER.info("HTTP status error for advisory '{}': {}", advisory, statusCode);
 
             errors.computeIfAbsent(statusCodeString, k -> new Counter()).inc();
 
@@ -193,22 +191,6 @@ public class App {
         }
 
         return findings;
-    }
-
-    private void sleep429() {
-        sleepSeconds(SLEEP_LIMIT_HIT);
-    }
-
-    private void sleepRateLimit() {
-        sleepSeconds(SLEEP_NORMAL);
-    }
-
-    private void sleepSeconds(final int s) {
-        try {
-            Thread.sleep(s * 1000);
-        } catch (InterruptedException e) {
-            LOGGER.error("sleep failed?", e);
-        }
     }
 
     private void writeAllData() {
