@@ -26,8 +26,6 @@ public class Step2 extends AbstractStep {
 
     private static final UnirestInstance UNIREST_INSTANCE = initUniRest();
 
-    private AllData allData = null;
-
     private String apiToken = getApiToken();
     private String apiUsername = getApiUsername();
 
@@ -67,7 +65,16 @@ public class Step2 extends AbstractStep {
 
             response.forEach(r -> {
                 final String version = getVersionFromPurl(r.getCoordinates());
-                packageVersions.get(version).setOssIndexReport(r);
+                PackageVersion packageVersion = packageVersions.get(version);
+                if (packageVersion == null) {
+                    packageVersion = packageVersions.get("@" + version);
+                }
+                if (packageVersion == null) {
+                    // still null?!?
+                    LOGGER.error("cant process {}", r.getCoordinates());
+                } else {
+                    packageVersion.setOssIndexReport(r);
+                }
             });
 
             sleepRateLimit();

@@ -24,14 +24,16 @@ At time of this writing:
     * <https://www.npmjs.com/advisories/1028/versions>
 * 39791 unique packageName@version combinations that are mentioned in an npm advisory as either affected or unaffected
 * 1150 unique package names with vulnerabilities according to npm audit
+* Out of the 1343 analyzed advisories, 389 are missing in OSS Index (29%)
 
 ## What it does
 
 * **Step1**: fetch advisory data from [npmjs](https://www.npmjs.com/advisories/) and store it locally
   * Runtime ~2 hours
 * **Step2**: obtain reports for every found package and version from Step1 from OSS Index
-  * Runtime ~4 hours
+  * Runtime ~2 hours
   * You will hit the request rate limit anyway, so provide a username and API token, see below
+* **Step3**: analyse the obtained data
 
 ## How to run
 
@@ -49,6 +51,15 @@ $ java -jar target/npm-vs-ossindex-1.0-SNAPSHOT-jar-with-dependencies.jar \
         -Dio.github.scolytus.user=$YOURMAIL \
         Step2
 ```
+
+## Benefits
+
+This little project lead to some contributions related to npm package security:
+
+* https://github.com/CycloneDX/cyclonedx-node-module/issues/56
+* https://github.com/OSSIndex/vulns/issues/91
+* https://github.com/OSSIndex/vulns/issues/92
+* https://github.com/DependencyTrack/dependency-track/issues/672
 
 ## Notes
 
