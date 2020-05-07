@@ -72,6 +72,8 @@ public class Step2 extends AbstractStep {
                 packageVersions.get(version).setOssIndexReport(r);
             });
 
+            sleepRateLimit();
+
             start = end;
             batchCount++;
         } while (end < all.size());
