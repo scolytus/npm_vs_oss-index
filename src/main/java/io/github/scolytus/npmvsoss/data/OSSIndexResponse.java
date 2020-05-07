@@ -1,4 +1,4 @@
-package io.github.scolytus.data;
+package io.github.scolytus.npmvsoss.data;
 
 import java.util.ArrayList;
 

@@ -1,11 +1,10 @@
-package io.github.scolytus;
+package io.github.scolytus.npmvsoss;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertTrue;
-
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Unit test for simple App.

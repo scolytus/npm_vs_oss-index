@@ -1,4 +1,4 @@
-package io.github.scolytus.data;
+package io.github.scolytus.npmvsoss.data;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;

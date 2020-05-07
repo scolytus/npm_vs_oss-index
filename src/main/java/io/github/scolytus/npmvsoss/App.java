@@ -1,11 +1,11 @@
-package io.github.scolytus;
+package io.github.scolytus.npmvsoss;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Stopwatch;
-import io.github.scolytus.data.AllData;
-import io.github.scolytus.data.Counter;
-import io.github.scolytus.data.Finding;
-import io.github.scolytus.data.PackageVersion;
+import io.github.scolytus.npmvsoss.data.AllData;
+import io.github.scolytus.npmvsoss.data.Counter;
+import io.github.scolytus.npmvsoss.data.Finding;
+import io.github.scolytus.npmvsoss.data.PackageVersion;
 import org.jsoup.HttpStatusException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

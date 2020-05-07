@@ -134,7 +134,7 @@
                             <archive>
                                 <manifest>
                                     <mainClass>
-                                        io.github.scolytus.App
+                                        io.github.scolytus.npmvsoss.App
                                     </mainClass>
                                 </manifest>
                             </archive>

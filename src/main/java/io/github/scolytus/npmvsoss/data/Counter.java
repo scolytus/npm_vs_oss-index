@@ -1,4 +1,4 @@
-package io.github.scolytus.data;
+package io.github.scolytus.npmvsoss.data;
 
 public class Counter {
 

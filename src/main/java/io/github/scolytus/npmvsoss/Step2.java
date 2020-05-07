@@ -1,10 +1,10 @@
-package io.github.scolytus;
+package io.github.scolytus.npmvsoss;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.github.scolytus.data.AllData;
-import io.github.scolytus.data.OSSIndexInput;
-import io.github.scolytus.data.OSSIndexResponse;
-import io.github.scolytus.data.PackageVersion;
+import io.github.scolytus.npmvsoss.data.AllData;
+import io.github.scolytus.npmvsoss.data.OSSIndexInput;
+import io.github.scolytus.npmvsoss.data.OSSIndexResponse;
+import io.github.scolytus.npmvsoss.data.PackageVersion;
 import kong.unirest.HttpResponse;
 import kong.unirest.Unirest;
 import kong.unirest.UnirestException;

@@ -1,4 +1,4 @@
-package io.github.scolytus;
+package io.github.scolytus.npmvsoss;
 
 public class Step1 {
 
