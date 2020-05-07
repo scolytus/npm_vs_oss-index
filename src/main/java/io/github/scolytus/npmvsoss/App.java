@@ -22,6 +22,9 @@ public class App {
         } else if ("Step2".equalsIgnoreCase(args[0])) {
             LOGGER.info("Executing Step 2");
             new Step2().run();
+        } else if ("Step3".equalsIgnoreCase(args[0])) {
+            LOGGER.info("Executing Step 3");
+            new Step3().run();
         } else {
             LOGGER.error("specify step");
         }

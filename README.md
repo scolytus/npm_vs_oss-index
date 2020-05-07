@@ -13,6 +13,18 @@
 * I also want to thank the JS community for providing the npm advisories. Big contribution to a more secure
   JS ecosystem.
 
+## Some numbers
+
+At time of this writing:
+
+* 1343 published npm advisories
+  * Thereof 3 did not provide version information because of an server error
+    * <https://www.npmjs.com/advisories/256/versions>
+    * <https://www.npmjs.com/advisories/630/versions>
+    * <https://www.npmjs.com/advisories/1028/versions>
+* 39791 unique packageName@version combinations that are mentioned in an npm advisory as either affected or unaffected
+* 1150 unique package names with vulnerabilities according to npm audit
+
 ## What it does
 
 * **Step1**: fetch advisory data from [npmjs](https://www.npmjs.com/advisories/) and store it locally

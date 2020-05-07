@@ -1,6 +1,5 @@
 package io.github.scolytus.npmvsoss;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.scolytus.npmvsoss.data.AllData;
 import io.github.scolytus.npmvsoss.data.OSSIndexInput;
 import io.github.scolytus.npmvsoss.data.OSSIndexResponse;
@@ -14,8 +13,6 @@ import org.apache.http.HttpHeaders;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -35,7 +32,7 @@ public class Step2 extends AbstractStep {
     private String apiUsername = getApiUsername();
 
     public Step2() {
-        initAllData();
+        initAllData("step1.json");
     }
 
     public void run() {
@@ -56,7 +53,8 @@ public class Step2 extends AbstractStep {
                 end = all.size();
             }
 
-            LOGGER.info("Processing batch '{}' from [{}] to [{}] of {} ({}%)", batchCount, start, end - 1, all.size(), ((end - 1)*100.0/(all.size() * 100.0)));
+            LOGGER.info("Processing batch '{}' from [{}] to [{}] of {} ({}%)",
+                    batchCount, start, end - 1, all.size(), ((end * 100.0) / (all.size() * 100.0)) * 100.0);
 
             final List<String> batch = all.subList(start, end);
 
@@ -93,6 +91,7 @@ public class Step2 extends AbstractStep {
         do {
             response = submitIntern(payload);
             if (response.getStatus() == 429) {
+                LOGGER.info("... sleeping ...");
                 sleep429();
             }
         } while (response.getStatus() == 429);
@@ -109,53 +108,34 @@ public class Step2 extends AbstractStep {
                 .body(payload)
                 .asObject(OSSIndexResponse.class);
 
+        LOGGER.info("HTTP status: {}", ossIndexResponseHttpResponse.getStatus());
+
         return ossIndexResponseHttpResponse;
     }
 
-    private void initAllData() {
-        ObjectMapper mapper = new ObjectMapper();
-        try {
-            allData = mapper.readValue(Paths.get("step1.json").toFile(), AllData.class);
-        } catch (IOException e) {
-            LOGGER.error("Can't read Data", e);
-            throw new IllegalStateException("Can't read Data", e);
-        }
-    }
-
     private void writeResponse(OSSIndexResponse response) {
-        final ObjectMapper mapper = new ObjectMapper();
-
-        try {
-            mapper.writerWithDefaultPrettyPrinter().writeValue(Paths.get("step2.json").toFile(), response);
-        } catch (IOException e) {
-            LOGGER.info("Something went wrong");
-        }
+        writeData("step2.json", response);
     }
 
     private void writeAllData() {
-        final ObjectMapper mapper = new ObjectMapper();
-
-        try {
-            mapper.writerWithDefaultPrettyPrinter().writeValue(Paths.get("step2.allData.json").toFile(), allData);
-        } catch (IOException e) {
-            LOGGER.info("Something went wrong");
-        }
+        writeData("step2.allData.json", allData);
     }
 
-    private List<String> convert(final List<String> batch) {
+    public static List<String> convert(final List<String> batch) {
         return batch.stream()
-                .map(this::getPurl)
+                .map(Step2::getPurl)
                 .collect(Collectors.toList());
     }
 
-    private String getPurl(final PackageVersion packageVersion) {
+    public static String getPurl(final PackageVersion packageVersion) {
         return getPurl(packageVersion.toString());
     }
 
-    private String getPurl(final String packageVersion) {
+    public static String getPurl(final String packageVersion) {
         String sToUse = packageVersion;
         if (packageVersion.startsWith("@")) {
-            sToUse = "%40" + packageVersion.substring(1);
+            // sToUse = "%40" + packageVersion.substring(1);
+            sToUse = packageVersion.substring(1);
         }
         return "pkg:npm/" + sToUse;
     }
