@@ -60,6 +60,7 @@ This little project lead to some contributions related to npm package security:
 * https://github.com/OSSIndex/vulns/issues/91
 * https://github.com/OSSIndex/vulns/issues/92
 * https://github.com/DependencyTrack/dependency-track/issues/672
+* https://github.com/DependencyTrack/dependency-track/issues/673
 
 ## Notes
 
