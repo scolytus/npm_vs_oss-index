@@ -37,16 +37,10 @@ public abstract class AbstractStep {
     }
 
     protected void initAllData(final String fileName) {
-        ObjectMapper mapper = new ObjectMapper();
-        try {
-            allData = mapper.readValue(Paths.get(fileName).toFile(), AllData.class);
-        } catch (IOException e) {
-            LOGGER.error("Can't read Data", e);
-            throw new IllegalStateException("Can't read Data", e);
-        }
+        allData = load(fileName, AllData.class);
     }
 
-    protected void writeData(final String fileName, final Object payload) {
+    public void writeData(final String fileName, final Object payload) {
         // Don't re-use, this is not a long running server app
         final ObjectMapper mapper = new ObjectMapper();
 
@@ -54,6 +48,16 @@ public abstract class AbstractStep {
             mapper.writerWithDefaultPrettyPrinter().writeValue(Paths.get(fileName).toFile(), payload);
         } catch (IOException e) {
             LOGGER.info("Something went wrong");
+        }
+    }
+
+    public <T> T load(final String fileName, final Class<T> clazz) {
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            return mapper.readValue(Paths.get(fileName).toFile(), clazz);
+        } catch (IOException e) {
+            LOGGER.error("Can't read Data", e);
+            throw new IllegalStateException("Can't read Data", e);
         }
     }
 

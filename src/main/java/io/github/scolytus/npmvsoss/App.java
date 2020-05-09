@@ -30,7 +30,10 @@ public class App {
             new Step4().run();
         } else if ("Step4a".equalsIgnoreCase(args[0])) {
             LOGGER.info("Executing Step 4a");
-            new Step4a().run();
+            //new Step4a().run();
+        } else if ("Step5".equalsIgnoreCase(args[0])) {
+            LOGGER.info("Executing Step 5");
+            new Step5().run();
         } else {
             LOGGER.error("specify step");
         }
