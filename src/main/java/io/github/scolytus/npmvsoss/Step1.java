@@ -215,6 +215,10 @@ public class Step1 extends AbstractStep {
     }
 
     protected static String getVersionUrl(final int advisory) {
-        return BASE_URL + advisory + "/versions";
+        return getNpmUrl(advisory) + "/versions";
+    }
+
+    protected static String getNpmUrl(final int advisory) {
+        return BASE_URL + advisory;
     }
 }
