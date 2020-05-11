@@ -22,7 +22,7 @@ At time of this writing:
     * <https://www.npmjs.com/advisories/256/versions>
     * <https://www.npmjs.com/advisories/630/versions>
     * <https://www.npmjs.com/advisories/1028/versions>
-* 39791 unique packageName@version combinations that are mentioned in an npm advisory as either affected or unaffected
+* 39791 unique `packageName@version` combinations that are mentioned in an npm advisory as either affected or unaffected
 * 1150 unique package names with vulnerabilities according to npm audit
 * Out of the 1343 analyzed advisories, 389 are missing in OSS Index (29%)
   * See <https://github.com/OSSIndex/vulns/issues/92>
@@ -32,7 +32,7 @@ At time of this writing:
   * 339 vulnerabilities were referencing NVD
   * 210 vulnerabilities were referencing github issues
 * Out of the 875 vulnerabilities from npm audit, 278 lead to false positives
-* 5182 unique `name@version` identifiers led to false positives on OSS Index
+* 5182 unique `packageName@version` identifiers led to false positives on OSS Index
 
 ## What it does
 
@@ -69,8 +69,10 @@ This little project lead to some contributions related to npm package security:
 * https://github.com/CycloneDX/cyclonedx-node-module/issues/56
 * https://github.com/OSSIndex/vulns/issues/91
 * https://github.com/OSSIndex/vulns/issues/92
+* https://github.com/OSSIndex/vulns/issues/93
 * https://github.com/DependencyTrack/dependency-track/issues/672
 * https://github.com/DependencyTrack/dependency-track/issues/673
+* The server errors were reported via E-Mail to npmjs.com
 
 ## Notes
 
